@@ -3,12 +3,12 @@
 set -e
 
 if [ "$(uname -m)" != "aarch64" -a "$(uname -m)" != "arm64" ]; then
-	echo "Host is not arm64. Aborting."
-	exit 1
+	echo "Warn: Host is not arm64. Aborting."
 fi
 
 if [ "$(uname)" != "Linux" ]; then
-	echo "Host is not Linux, will attempt to compile with Docker."
+	echo "Host is not Linux, will attempt to compile with Docker. You have 10 seconds to cancel"
+	sleep 10
 	type docker 2>/dev/null >&2 || {
 		echo "Docker is missing, cannot cross compile."
 		exit 1
